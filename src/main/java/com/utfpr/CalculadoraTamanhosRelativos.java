@@ -18,7 +18,7 @@ public class CalculadoraTamanhosRelativos {
                 return media - desvioPadrao;
         }
 
-        private double calcularM(double media, double desvioPadrao) {
+        private double calcularM(double media) {
                 return media;
         }
 
@@ -42,7 +42,7 @@ public class CalculadoraTamanhosRelativos {
 
                 resultados.add(Math.exp(calcularPp(media, desvioPadrao)));
                 resultados.add(Math.exp(calcularP(media, desvioPadrao)));
-                resultados.add(Math.exp(calcularM(media, desvioPadrao)));
+                resultados.add(Math.exp(calcularM(media)));
                 resultados.add(Math.exp(calcularG(media, desvioPadrao)));
                 resultados.add(Math.exp(calcularGg(media, desvioPadrao)));
 

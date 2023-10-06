@@ -1,7 +1,7 @@
 package com.utfpr;
 
 public class ListaEncadeada {
-        private final String mensagemExcecao = "Posição maior ou igual ao tamanho da lista";
+        private static String mensagemExcecao = "Posição maior ou igual ao tamanho da lista";
 
         private Cabeca cabeca;
 
@@ -26,7 +26,6 @@ public class ListaEncadeada {
 
                 if (posicao == 0 && cabeca.getPrimeiro() == null) {
                         cabeca.setPrimeiro(novo);
-                        cabeca.setUltimo(novo);
 
                 } else if (posicao == 0 && cabeca.getPrimeiro() != null) {
                         novo.setProximo(cabeca.getPrimeiro());
@@ -34,7 +33,6 @@ public class ListaEncadeada {
 
                 } else if (noAtual.getProximo() == null) {
                         noAtual.setProximo(novo);
-                        cabeca.setUltimo(novo);
 
                 } else {
                         novo.setProximo(noAtual.getProximo());
@@ -80,7 +78,7 @@ public class ListaEncadeada {
                 }
 
                 if (qtdeElementos > 0) {
-                        media = (double) soma / qtdeElementos;
+                        media = soma / qtdeElementos;
                 }
 
                 return media;
@@ -104,7 +102,7 @@ public class ListaEncadeada {
                         noAtual = noAtual.getProximo();
                 }
 
-                return (double) Math.sqrt(soma / (qtdeElementos - 1));
+                return Math.sqrt(soma / (qtdeElementos - 1));
         }
 
         public int tamanho() {
@@ -177,11 +175,8 @@ public class ListaEncadeada {
         private class Cabeca {
                 private No primeiro;
 
-                private No ultimo;
-
                 public Cabeca() {
                         this.primeiro = null;
-                        this.ultimo = null;
                 }
 
                 public No getPrimeiro() {
@@ -190,10 +185,6 @@ public class ListaEncadeada {
 
                 public void setPrimeiro(No proximo) {
                         this.primeiro = proximo;
-                }
-
-                public void setUltimo(No proximo) {
-                        this.ultimo = proximo;
                 }
         }
 }
