@@ -15,13 +15,13 @@ public class ListaEncadeada {
                 }
 
                 No novo = new No(dado);
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                int posicao_atual = 0;
+                int posicaoAtual = 0;
 
-                while (posicao_atual < posicao - 1 && no_atual.getProximo() != null) {
-                        posicao_atual++;
-                        no_atual = no_atual.getProximo();
+                while (posicaoAtual < posicao - 1 && noAtual.getProximo() != null) {
+                        posicaoAtual++;
+                        noAtual = noAtual.getProximo();
                 }
 
                 if (posicao == 0 && cabeca.getPrimeiro() == null) {
@@ -32,13 +32,13 @@ public class ListaEncadeada {
                         novo.setProximo(cabeca.getPrimeiro());
                         cabeca.setPrimeiro(novo);
 
-                } else if (no_atual.getProximo() == null) {
-                        no_atual.setProximo(novo);
+                } else if (noAtual.getProximo() == null) {
+                        noAtual.setProximo(novo);
                         cabeca.setUltimo(novo);
 
                 } else {
-                        novo.setProximo(no_atual.getProximo());
-                        no_atual.setProximo(novo);
+                        novo.setProximo(noAtual.getProximo());
+                        noAtual.setProximo(novo);
                 }
         }
 
@@ -47,15 +47,15 @@ public class ListaEncadeada {
                         throw new IndexOutOfBoundsException(mensagemExcecao);
                 }
 
-                No no_atual = cabeca.getPrimeiro();
-                int posicao_atual = 0;
+                No noAtual = cabeca.getPrimeiro();
+                int posicaoAtual = 0;
 
-                while (posicao_atual < posicao) {
-                        no_atual = no_atual.getProximo();
-                        posicao_atual++;
+                while (posicaoAtual < posicao) {
+                        noAtual = noAtual.getProximo();
+                        posicaoAtual++;
                 }
 
-                return no_atual.getDado();
+                return noAtual.getDado();
         }
 
         public void adicionarNoFinalLista(double dado) {
@@ -68,17 +68,22 @@ public class ListaEncadeada {
                 }
 
                 double soma = 0;
-                int qtde_elementos = 0;
+                double media = 0;
+                int qtdeElementos = 0;
 
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                while (no_atual != null) {
-                        soma += no_atual.getDado();
-                        qtde_elementos++;
-                        no_atual = no_atual.getProximo();
+                while (noAtual != null) {
+                        soma += noAtual.getDado();
+                        qtdeElementos++;
+                        noAtual = noAtual.getProximo();
                 }
 
-                return (double) soma / qtde_elementos;
+                if (qtdeElementos > 0) {
+                        media = (double) soma / qtdeElementos;
+                }
+
+                return media;
         }
 
         public double desvioPadraoAmostralLista() {
@@ -88,38 +93,38 @@ public class ListaEncadeada {
 
                 double media = mediaLista();
                 double soma = 0;
-                int qtde_elementos = 0;
+                int qtdeElementos = 0;
 
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                while (no_atual != null) {
-                        soma += Math.pow((no_atual.getDado() - media), 2);
+                while (noAtual != null) {
+                        soma += Math.pow((noAtual.getDado() - media), 2);
 
-                        qtde_elementos++;
-                        no_atual = no_atual.getProximo();
+                        qtdeElementos++;
+                        noAtual = noAtual.getProximo();
                 }
 
-                return (double) Math.sqrt(soma / (qtde_elementos - 1));
+                return (double) Math.sqrt(soma / (qtdeElementos - 1));
         }
 
         public int tamanho() {
                 int tamanho = 0;
 
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                while (no_atual != null) {
+                while (noAtual != null) {
                         tamanho++;
-                        no_atual = no_atual.getProximo();
+                        noAtual = noAtual.getProximo();
                 }
                 return tamanho;
         }
 
         public void converterListaParaLogNormal() {
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                while (no_atual != null) {
-                        no_atual.dado = Math.log(no_atual.dado);
-                        no_atual = no_atual.getProximo();
+                while (noAtual != null) {
+                        noAtual.dado = Math.log(noAtual.dado);
+                        noAtual = noAtual.getProximo();
                 }
         }
 
@@ -129,12 +134,12 @@ public class ListaEncadeada {
                 double media = mediaLista();
                 double auxiliar = 0;
 
-                No no_atual = cabeca.getPrimeiro();
+                No noAtual = cabeca.getPrimeiro();
 
-                while (no_atual != null) {
-                        auxiliar += no_atual.dado - media;
+                while (noAtual != null) {
+                        auxiliar += noAtual.dado - media;
                         dividendo += Math.pow(auxiliar, 2);
-                        no_atual = no_atual.getProximo();
+                        noAtual = noAtual.getProximo();
                         divisor++;
                         auxiliar = 0;
                 }

@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-class CalculadoraTamanhosRelativosTest extends TestCase {
+public class CalculadoraTamanhosRelativosTest extends TestCase {
         private ListaEncadeada lista;
 
         private CalculadoraTamanhosRelativos calculadora;
@@ -18,7 +18,7 @@ class CalculadoraTamanhosRelativosTest extends TestCase {
         }
 
         @Test
-        public void casoTestePrimeiro() {
+        public void testCasoPrimeiro() {
                 lista.adicionarNo(18 / 3f, 0);
                 lista.adicionarNo(18 / 3f, 1);
                 lista.adicionarNo(25 / 3f, 2);
@@ -44,7 +44,7 @@ class CalculadoraTamanhosRelativosTest extends TestCase {
         }
 
         @Test
-        public void casoTesteSegundo() {
+        public void testCasoSegundo() {
                 lista.adicionarNo(7, 0);
                 lista.adicionarNo(12, 1);
                 lista.adicionarNo(10, 2);
