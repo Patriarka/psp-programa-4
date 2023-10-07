@@ -4,7 +4,7 @@ public class ListaEncadeada {
         private final Cabeca cabeca;
 
         public ListaEncadeada() {
-                cabeca = new Cabeca();
+                this.cabeca = new Cabeca();
         }
 
         public void adicionarNo(double dado, int posicao) {
@@ -32,7 +32,7 @@ public class ListaEncadeada {
                 }
         }
 
-        private No obterNo(int posicao) {
+        public No obterNo(int posicao) {
                 No noAtual = cabeca.getPrimeiro();
 
                 int posicaoAtual = 0;
@@ -43,6 +43,10 @@ public class ListaEncadeada {
                 }
 
                 return noAtual;
+        }
+
+        public boolean listaVazia() {
+                return cabeca.getPrimeiro() == null;
         }
 
         public double obterElemento(int posicao) {
@@ -65,43 +69,10 @@ public class ListaEncadeada {
                 adicionarNo(dado, tamanho());
         }
 
-        public double mediaLista() {
-                int qtdeElementos = tamanho();
-
-                double soma = calcularSomaLista();
-
-                return qtdeElementos == 0 ? 0 : soma / qtdeElementos;
-        }
-
-        private double calcularSomaLista() {
-                double soma = 0;
-
-                No noAtual = cabeca.getPrimeiro();
-
-                while (noAtual != null) {
-                        soma += noAtual.getDado();
-                        noAtual = noAtual.getProximo();
-                }
-
-                return soma;
-        }
-
-        public double desvioPadraoAmostralLista() {
-                if (listaVazia()) {
-                        return 0;
-                }
-
-                return Math.sqrt(varianciaLista());
-        }
-
-        private boolean listaVazia() {
-                return cabeca.getPrimeiro() == null;
-        }
-
         public int tamanho() {
                 int tamanho = 0;
 
-                No noAtual = cabeca.getPrimeiro();
+                ListaEncadeada.No noAtual = obterNo(0);
 
                 while (noAtual != null) {
                         tamanho++;
@@ -110,32 +81,7 @@ public class ListaEncadeada {
                 return tamanho;
         }
 
-        public void converterListaParaLogNormal() {
-                No noAtual = cabeca.getPrimeiro();
-
-                while (noAtual != null) {
-                        noAtual.dado = Math.log(noAtual.dado);
-                        noAtual = noAtual.getProximo();
-                }
-        }
-
-        public double varianciaLista() {
-                double dividendo = 0;
-                double divisor = 0;
-                double media = mediaLista();
-
-                No noAtual = cabeca.getPrimeiro();
-
-                while (noAtual != null) {
-                        dividendo += Math.pow(noAtual.dado - media, 2);
-                        noAtual = noAtual.getProximo();
-                        divisor++;
-                }
-
-                return dividendo / (divisor - 1);
-        }
-
-        private class No {
+        public class No {
                 private double dado;
 
                 private No proximo;
@@ -149,6 +95,10 @@ public class ListaEncadeada {
                         return dado;
                 }
 
+                public void setDado(double valorDado) {
+                        this.dado = valorDado;
+                }
+
                 public No getProximo() {
                         return proximo;
                 }
@@ -158,7 +108,7 @@ public class ListaEncadeada {
                 }
         }
 
-        private class Cabeca {
+        public class Cabeca {
                 private No primeiro;
 
                 public Cabeca() {

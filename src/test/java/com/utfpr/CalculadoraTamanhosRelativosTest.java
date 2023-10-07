@@ -9,12 +9,12 @@ import org.junit.Test;
 public class CalculadoraTamanhosRelativosTest extends TestCase {
         private ListaEncadeada lista;
 
-        private CalculadoraTamanhosRelativos calculadora;
+        private CalculadoraTamanhosRelativos calculadoraTamanhosRelativos;
 
         @Before
         public void setUp() {
                 this.lista = new ListaEncadeada();
-                this.calculadora = new CalculadoraTamanhosRelativos(lista);
+                this.calculadoraTamanhosRelativos = new CalculadoraTamanhosRelativos(lista);
         }
 
         @Test
@@ -34,7 +34,7 @@ public class CalculadoraTamanhosRelativosTest extends TestCase {
                 lista.adicionarNo(558 / 10f, 12);
 
                 List<Double> listaEsperada = Arrays.asList(4.3953, 8.5081, 16.4696, 31.8811, 61.7137);
-                List<Double> listaTamanhosRelativos = calculadora.calcularTamanhosRelativos();
+                List<Double> listaTamanhosRelativos = calculadoraTamanhosRelativos.calcularTamanhosRelativos();
 
                 assertEquals(listaTamanhosRelativos.size(), listaEsperada.size(), 0.001);
 
@@ -63,7 +63,7 @@ public class CalculadoraTamanhosRelativosTest extends TestCase {
                 lista.adicionarNo(12, 15);
 
                 List<Double> listaEsperada = Arrays.asList(6.3375, 8.4393, 11.2381, 14.9650, 19.9280);
-                List<Double> listaTamanhosRelativos = calculadora.calcularTamanhosRelativos();
+                List<Double> listaTamanhosRelativos = calculadoraTamanhosRelativos.calcularTamanhosRelativos();
 
                 assertEquals(listaTamanhosRelativos.size(), listaEsperada.size(), 0.001);
 

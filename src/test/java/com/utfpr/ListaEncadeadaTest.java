@@ -6,10 +6,12 @@ import org.junit.Test;
 
 public class ListaEncadeadaTest extends TestCase {
         private ListaEncadeada lista;
+        private Calculadora calculadora;
 
         @Before
         public void setUp() {
                 lista = new ListaEncadeada();
+                calculadora = new Calculadora(lista);
         }
 
         @Test
@@ -44,12 +46,12 @@ public class ListaEncadeadaTest extends TestCase {
 
         @Test
         public void testMediaListaVazia() {
-                assertEquals(0.0, lista.mediaLista(), 0.001);
+                assertEquals(0.0, calculadora.mediaLista(), 0.001);
         }
 
         @Test
         public void testDesvioPadraoAmostralListaVazia() {
-                assertEquals(0.0, lista.desvioPadraoAmostralLista(), 0.001);
+                assertEquals(0.0, calculadora.desvioPadraoAmostralLista(), 0.001);
         }
 
         @Test
@@ -127,11 +129,11 @@ public class ListaEncadeadaTest extends TestCase {
                 lista.adicionarNo(624, 8);
                 lista.adicionarNo(1503, 9);
 
-                double mediaCalculada = lista.mediaLista();
+                double mediaCalculada = calculadora.mediaLista();
 
                 assertEquals(mediaEsperada, mediaCalculada, 0.01);
 
-                double desvioPadraoAmostralListaCalculado = lista.desvioPadraoAmostralLista();
+                double desvioPadraoAmostralListaCalculado = calculadora.desvioPadraoAmostralLista();
 
                 assertEquals(desvioPadraoAmostralListaEsperado, desvioPadraoAmostralListaCalculado, 0.01);
         }
@@ -152,11 +154,11 @@ public class ListaEncadeadaTest extends TestCase {
                 lista.adicionarNo(38.8, 8);
                 lista.adicionarNo(138.2, 9);
 
-                double mediaCalculada = lista.mediaLista();
+                double mediaCalculada = calculadora.mediaLista();
 
                 assertEquals(mediaEsperada, mediaCalculada, 0.01);
 
-                double desvioPadraoAmostralListaCalculado = lista.desvioPadraoAmostralLista();
+                double desvioPadraoAmostralListaCalculado = calculadora.desvioPadraoAmostralLista();
 
                 assertEquals(desvioPadraoAmostralListaEsperado, desvioPadraoAmostralListaCalculado, 0.01);
         }
