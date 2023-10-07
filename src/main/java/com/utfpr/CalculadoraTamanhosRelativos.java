@@ -38,7 +38,7 @@ public class CalculadoraTamanhosRelativos {
                 lista.converterListaParaLogNormal();
 
                 media = lista.mediaLista();
-                desvioPadrao = lista.desvioPadraoLista();
+                desvioPadrao = lista.desvioPadraoAmostralLista();
 
                 resultados.add(Math.exp(calcularPp(media, desvioPadrao)));
                 resultados.add(Math.exp(calcularP(media, desvioPadrao)));

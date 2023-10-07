@@ -1,8 +1,6 @@
 package com.utfpr;
 
 public class ListaEncadeada {
-        private static String mensagemExcecao = "Posição maior ou igual ao tamanho da lista";
-
         private final Cabeca cabeca;
 
         public ListaEncadeada() {
@@ -10,15 +8,13 @@ public class ListaEncadeada {
         }
 
         public void adicionarNo(double dado, int posicao) {
-                if (posicao < 0) {
-                        throw new IllegalArgumentException("Posição não pode ser negativa.");
-                }
+                validarPosicao(posicao);
 
                 No novo = new No(dado);
                 No noAtual = obterNo(posicao);
 
                 if (posicao == 0) {
-                        if (cabeca.getPrimeiro() == null) {
+                        if (listaVazia()) {
                                 cabeca.setPrimeiro(novo);
                         } else {
                                 novo.setProximo(cabeca.getPrimeiro());
@@ -27,6 +23,12 @@ public class ListaEncadeada {
                 } else {
                         novo.setProximo(noAtual.getProximo());
                         noAtual.setProximo(novo);
+                }
+        }
+
+        private static void validarPosicao(int posicao) {
+                if (posicao < 0) {
+                        throw new IllegalArgumentException("Posição não pode ser negativa.");
                 }
         }
 
@@ -45,7 +47,7 @@ public class ListaEncadeada {
 
         public double obterElemento(int posicao) {
                 if (posicao >= tamanho()) {
-                        throw new IndexOutOfBoundsException(mensagemExcecao);
+                        throw new IndexOutOfBoundsException("Posição maior ou igual ao tamanho da lista");
                 }
 
                 No noAtual = cabeca.getPrimeiro();
@@ -85,24 +87,15 @@ public class ListaEncadeada {
         }
 
         public double desvioPadraoAmostralLista() {
-                if (cabeca.getPrimeiro() == null) {
+                if (listaVazia()) {
                         return 0;
                 }
 
-                double media = mediaLista();
-                double soma = 0;
-                int qtdeElementos = 0;
+                return Math.sqrt(varianciaLista());
+        }
 
-                No noAtual = cabeca.getPrimeiro();
-
-                while (noAtual != null) {
-                        soma += Math.pow((noAtual.getDado() - media), 2);
-
-                        qtdeElementos++;
-                        noAtual = noAtual.getProximo();
-                }
-
-                return Math.sqrt(soma / (qtdeElementos - 1));
+        private boolean listaVazia() {
+                return cabeca.getPrimeiro() == null;
         }
 
         public int tamanho() {
@@ -130,23 +123,16 @@ public class ListaEncadeada {
                 double dividendo = 0;
                 double divisor = 0;
                 double media = mediaLista();
-                double auxiliar = 0;
 
                 No noAtual = cabeca.getPrimeiro();
 
                 while (noAtual != null) {
-                        auxiliar += noAtual.dado - media;
-                        dividendo += Math.pow(auxiliar, 2);
+                        dividendo += Math.pow(noAtual.dado - media, 2);
                         noAtual = noAtual.getProximo();
                         divisor++;
-                        auxiliar = 0;
                 }
 
                 return dividendo / (divisor - 1);
-        }
-
-        public double desvioPadraoLista() {
-                return Math.sqrt(varianciaLista());
         }
 
         private class No {
