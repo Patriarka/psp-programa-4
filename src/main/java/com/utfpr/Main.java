@@ -1,6 +1,10 @@
 package com.utfpr;
 
-public class Main {
+public final class Main {
+        private Main() {
+                throw new AssertionError("Esta classe não deve ser instanciada.");
+        }
+
         public static void main(String[] args) {
                 ListaEncadeada lista = new ListaEncadeada();
 
@@ -22,6 +26,6 @@ public class Main {
                 lista.adicionarNo(12, 15);
 
                 CalculadoraTamanhosRelativos calculadora = new CalculadoraTamanhosRelativos(lista);
-                System.out.println(calculadora.calcularTamanhosRelativos());
+                calculadora.calcularTamanhosRelativos();
         }
 }

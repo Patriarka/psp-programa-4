@@ -3,7 +3,7 @@ package com.utfpr;
 public class ListaEncadeada {
         private static String mensagemExcecao = "Posição maior ou igual ao tamanho da lista";
 
-        private Cabeca cabeca;
+        private final Cabeca cabeca;
 
         public ListaEncadeada() {
                 cabeca = new Cabeca();
@@ -15,6 +15,22 @@ public class ListaEncadeada {
                 }
 
                 No novo = new No(dado);
+                No noAtual = obterNo(posicao);
+
+                if (posicao == 0) {
+                        if (cabeca.getPrimeiro() == null) {
+                                cabeca.setPrimeiro(novo);
+                        } else {
+                                novo.setProximo(cabeca.getPrimeiro());
+                                cabeca.setPrimeiro(novo);
+                        }
+                } else {
+                        novo.setProximo(noAtual.getProximo());
+                        noAtual.setProximo(novo);
+                }
+        }
+
+        private No obterNo(int posicao) {
                 No noAtual = cabeca.getPrimeiro();
 
                 int posicaoAtual = 0;
@@ -24,20 +40,7 @@ public class ListaEncadeada {
                         noAtual = noAtual.getProximo();
                 }
 
-                if (posicao == 0 && cabeca.getPrimeiro() == null) {
-                        cabeca.setPrimeiro(novo);
-
-                } else if (posicao == 0 && cabeca.getPrimeiro() != null) {
-                        novo.setProximo(cabeca.getPrimeiro());
-                        cabeca.setPrimeiro(novo);
-
-                } else if (noAtual.getProximo() == null) {
-                        noAtual.setProximo(novo);
-
-                } else {
-                        novo.setProximo(noAtual.getProximo());
-                        noAtual.setProximo(novo);
-                }
+                return noAtual;
         }
 
         public double obterElemento(int posicao) {

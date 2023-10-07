@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculadoraTamanhosRelativos {
-        private ListaEncadeada lista;
+        private final ListaEncadeada lista;
 
         CalculadoraTamanhosRelativos(ListaEncadeada lista) {
                 this.lista = lista;
