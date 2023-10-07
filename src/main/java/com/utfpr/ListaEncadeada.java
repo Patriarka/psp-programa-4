@@ -64,27 +64,24 @@ public class ListaEncadeada {
         }
 
         public double mediaLista() {
-                if (cabeca.getPrimeiro() == null) {
-                        return 0;
-                }
+                int qtdeElementos = tamanho();
 
+                double soma = calcularSomaLista();
+
+                return qtdeElementos == 0 ? 0 : soma / qtdeElementos;
+        }
+
+        private double calcularSomaLista() {
                 double soma = 0;
-                double media = 0;
-                int qtdeElementos = 0;
 
                 No noAtual = cabeca.getPrimeiro();
 
                 while (noAtual != null) {
                         soma += noAtual.getDado();
-                        qtdeElementos++;
                         noAtual = noAtual.getProximo();
                 }
 
-                if (qtdeElementos > 0) {
-                        media = soma / qtdeElementos;
-                }
-
-                return media;
+                return soma;
         }
 
         public double desvioPadraoAmostralLista() {
